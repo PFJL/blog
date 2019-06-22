@@ -5,15 +5,19 @@
   
 
   
-  <title>Hexo</title>
+  <title>jQuery-lesson2-结构封装详解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="1、如果我们自己要写一个类似于jQuery类库，首先就是要把自己的作用域封装好，    防止污染全局变量； 2、处理作用域的方法：    （1）命名空间：        实际上就是一个对象（在总的js文件里面），用来存放变量的。            防止同一个html文件引入多个js文件，里面的变量发生冲突。            var org = {                depar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery-lesson2-结构封装详解">
+<meta property="og:url" content="http://yoursite.com/2019/06/22/jQuery-lesson2-结构封装详解/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、如果我们自己要写一个类似于jQuery类库，首先就是要把自己的作用域封装好，    防止污染全局变量； 2、处理作用域的方法：    （1）命名空间：        实际上就是一个对象（在总的js文件里面），用来存放变量的。            防止同一个html文件引入多个js文件，里面的变量发生冲突。            var org = {                depar">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-06-22T05:59:31.708Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="jQuery-lesson2-结构封装详解">
+<meta name="twitter:description" content="1、如果我们自己要写一个类似于jQuery类库，首先就是要把自己的作用域封装好，    防止污染全局变量； 2、处理作用域的方法：    （1）命名空间：        实际上就是一个对象（在总的js文件里面），用来存放变量的。            防止同一个html文件引入多个js文件，里面的变量发生冲突。            var org = {                depar">
   
     <link rel="alternate" href="/blog/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-jQuery-lesson2-结构封装详解" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-jQuery-lesson2-结构封装详解" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog/2019/06/22/jQuery-lesson2-结构封装详解/" class="article-date">
   <time datetime="2019-06-22T05:58:35.000Z" itemprop="datePublished">2019-06-22</time>
@@ -75,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2019/06/22/jQuery-lesson2-结构封装详解/">jQuery-lesson2-结构封装详解</a>
+    <h1 class="article-title" itemprop="name">
+      jQuery-lesson2-结构封装详解
     </h1>
   
 
@@ -154,143 +156,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-jQuery-lesson1-引用" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2019/06/18/jQuery-lesson1-引用/" class="article-date">
-  <time datetime="2019-06-18T07:31:27.000Z" itemprop="datePublished">2019-06-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2019/06/18/jQuery-lesson1-引用/">jQuery-lesson1-引用</a>
-    </h1>
+    <a href="/blog/2019/06/18/jQuery-lesson1-引用/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">jQuery-lesson1-引用</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="jQuery-lesson1-引用"><a href="#jQuery-lesson1-引用" class="headerlink" title="jQuery lesson1 引用"></a>jQuery lesson1 引用</h1><p>1、引用方式：最好放在文件的前面<br>    （1）在线引用：<a href="http://code.jquery.com" target="_blank" rel="noopener">http://code.jquery.com</a><br>    （2）本地引用：通过下载jQuery资源引用</p>
-<p>2、获取dom<br>    （1）通过jQuery获取dom，可以用 $ 替代jQuery。<br>        jQuery(‘div’) = $(‘div’);<br>    （2）jQuery获取的dom，返回的是类数组，可调用的方法都是封装在jQuery对象原型上的方法。<br>    （3）jQuery的选择器：<br>        1）css选择器<br>        2）原生dom<br>        3）类数组/数组：如果是数组或类数组，那么jQuery就会帮你把该数组/类数组索引下的值插入到jQuery类数组下；<br>        4）函数<br>            <em>1</em> $(function () {<br>                    console.log($(‘li’)).text();<br>                })<br>            如果你填的是函数，那么jQuery就会自动执行，在dom文档解析完成之后，所以写在那个地方都可以，只要不要写错就可以；</p>
-<pre><code>    *2* $(document).ready(function () {
-            console.log($(&apos;li&apos;)).text();
-        })
-
-    上面的1和2两种效果是完全相同的
-
-5）空值null/undefined
-    console.log($(null)); // 返回空
-
-6）如果添加其他的，jQuery就会把它放到自己类数组的   第0位上；</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/18/jQuery-lesson1-引用/" data-id="cjx745upj0001c0uh5xn67bhs" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-    <article id="post-firstBlog" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2019/06/16/firstBlog/" class="article-date">
-  <time datetime="2019-06-16T09:00:25.000Z" itemprop="datePublished">2019-06-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2019/06/16/firstBlog/">firstBlog</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Welcom-to-Hexo-sptw-Eich"><a href="#Welcom-to-Hexo-sptw-Eich" class="headerlink" title="Welcom to Hexo,sptw.Eich!!!"></a>Welcom to Hexo,sptw.Eich!!!</h1>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/16/firstBlog/" data-id="cjx745upc0000c0uhp6z0lud9" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog/2019/06/16/hello-world/" class="article-date">
-  <time datetime="2019-06-16T07:32:46.998Z" itemprop="datePublished">2019-06-16</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/blog/2019/06/16/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/06/16/hello-world/" data-id="cjx745uqx0002c0uh2oogk2ag" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
 
 </section>
         
